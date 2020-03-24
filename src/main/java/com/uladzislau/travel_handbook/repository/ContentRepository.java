@@ -1,4 +1,6 @@
 package com.uladzislau.travel_handbook.repository;
 
-public class ContentRepository {
+import com.uladzislau.travel_handbook.model.Content;
+
+public interface ContentRepository extends BaseRepository<Content, Long> {
 }

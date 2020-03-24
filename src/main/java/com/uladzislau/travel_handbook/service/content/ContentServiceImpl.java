@@ -4,11 +4,11 @@ import com.uladzislau.travel_handbook.model.Content;
 import com.uladzislau.travel_handbook.repository.BaseRepository;
 import com.uladzislau.travel_handbook.repository.ContentRepository;
 import com.uladzislau.travel_handbook.service.BaseService;
-import com.uladzislau.travel_handbook.service.Service;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-@org.springframework.stereotype.Service
-public class ContentServiceImpl extends BaseService<Content> implements Service<Content> {
+@Service
+public class ContentServiceImpl extends BaseService<Content> implements ContentService {
 
     @Autowired
     private ContentRepository contentRepository;

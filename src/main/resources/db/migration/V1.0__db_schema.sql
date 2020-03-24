@@ -10,8 +10,8 @@ create table cities
 create table content
 (
     id      serial,
-    text    varchar(255) not null,
-    city_id integer      not null,
+    text    varchar(1000) not null,
+    city_id integer       not null,
     CONSTRAINT "content_pk" primary key (id)
 );
 

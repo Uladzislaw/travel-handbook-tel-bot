@@ -9,20 +9,11 @@ create table cities
 
 create table content
 (
-    id   serial,
-    text varchar(255) not null,
+    id      serial,
+    text    varchar(255) not null,
+    city_id integer      not null,
     CONSTRAINT "content_pk" primary key (id)
 );
 
-create table city_info
-(
-    id         serial,
-    city_id    integer not null,
-    content_id integer not null,
-    CONSTRAINT "city_info_pk" primary key (id)
-);
-
-ALTER TABLE "city_info"
-    ADD CONSTRAINT "city_info_fk0" FOREIGN KEY (city_id) REFERENCES cities (id);
-ALTER TABLE "city_info"
-    ADD CONSTRAINT "city_info_fk1" FOREIGN KEY (content_id) REFERENCES content (id);
+ALTER TABLE "content"
+    ADD CONSTRAINT "content_fk0" FOREIGN KEY (city_id) REFERENCES cities (id);

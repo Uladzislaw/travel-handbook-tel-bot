@@ -1,7 +1,6 @@
 package com.uladzislau.travel_handbook.service.city;
 
 import com.uladzislau.travel_handbook.dto.CityDto;
-import com.uladzislau.travel_handbook.exception.ResourceNotFoundException;
 import com.uladzislau.travel_handbook.model.City;
 import com.uladzislau.travel_handbook.repository.BaseRepository;
 import com.uladzislau.travel_handbook.repository.CityRepository;
@@ -72,10 +71,5 @@ public class CityServiceImpl extends BaseService<City> implements CityService {
     @Transactional
     public void delete(long id) {
         delete(findByIdOrElseThrow(id));
-    }
-
-    private City findByIdOrElseThrow(long id) {
-        return findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("City with id " + id + " wasn't found."));
     }
 }

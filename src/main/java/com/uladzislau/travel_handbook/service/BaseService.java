@@ -1,5 +1,6 @@
 package com.uladzislau.travel_handbook.service;
 
+import com.uladzislau.travel_handbook.exception.ResourceNotFoundException;
 import com.uladzislau.travel_handbook.repository.BaseRepository;
 
 import java.util.List;
@@ -27,5 +28,10 @@ public abstract class BaseService<T> implements Service<T> {
     @Override
     public void delete(T object) {
         relatedRepository().delete(object);
+    }
+
+    public T findByIdOrElseThrow(long id) {
+        return findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Entity with id " + id + " wasn't found."));
     }
 }

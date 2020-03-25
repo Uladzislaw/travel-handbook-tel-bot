@@ -1,6 +1,7 @@
 package com.uladzislau.travel_handbook.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.uladzislau.travel_handbook.constant.ErrorConstant;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -16,6 +17,9 @@ import javax.validation.constraints.NotNull;
 @AllArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class CityDto {
+
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
+    private Long id;
 
     @NotNull(message = ErrorConstant.NULLABLE_CITY_NAME)
     @Length(min = 2, max = 70, message = ErrorConstant.CITY_NAME_LENGTH)

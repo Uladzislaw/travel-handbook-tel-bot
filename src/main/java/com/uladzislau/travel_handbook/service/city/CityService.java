@@ -13,4 +13,8 @@ public interface CityService extends Service<City> {
     List<CityDto> readAll();
 
     void create(CityDto city);
+
+    CityDto update(long id, CityDto city);
+
+    void delete(long id);
 }

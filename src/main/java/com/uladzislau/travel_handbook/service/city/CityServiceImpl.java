@@ -27,10 +27,10 @@ public class CityServiceImpl extends BaseService<City> implements CityService {
     @Override
     @Transactional(readOnly = true)
     public CityDto readById(long id) {
-        City city = findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("City with id " + id + " wasn't found."));
+        City city = findByIdOrElseThrow(id);
 
         return CityDto.builder()
+                .id(city.getId())
                 .name(city.getName())
                 .build();
     }
@@ -39,7 +39,10 @@ public class CityServiceImpl extends BaseService<City> implements CityService {
     @Transactional(readOnly = true)
     public List<CityDto> readAll() {
         return findAll().stream()
-                .map(city -> CityDto.builder().name(city.getName()).build())
+                .map(city -> CityDto.builder()
+                        .id(city.getId())
+                        .name(city.getName())
+                        .build())
                 .collect(Collectors.toList());
     }
 
@@ -50,5 +53,29 @@ public class CityServiceImpl extends BaseService<City> implements CityService {
                 .name(city.getName())
                 .build();
         cityRepository.save(objectToPersist);
+    }
+
+    @Override
+    @Transactional
+    public CityDto update(long id, CityDto cityDto) {
+        City city = findByIdOrElseThrow(id);
+        city.setName(cityDto.getName());
+        save(city);
+
+        return CityDto.builder()
+                .id(city.getId())
+                .name(city.getName())
+                .build();
+    }
+
+    @Override
+    @Transactional
+    public void delete(long id) {
+        delete(findByIdOrElseThrow(id));
+    }
+
+    private City findByIdOrElseThrow(long id) {
+        return findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("City with id " + id + " wasn't found."));
     }
 }

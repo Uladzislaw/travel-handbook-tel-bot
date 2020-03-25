@@ -4,9 +4,11 @@ import com.uladzislau.travel_handbook.dto.CityDto;
 import com.uladzislau.travel_handbook.service.city.CityService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -36,5 +38,17 @@ public class CityController {
     @ResponseStatus(HttpStatus.CREATED)
     public void createCity(@RequestBody @Valid CityDto city) {
         cityService.create(city);
+    }
+
+    @PutMapping(value = "{id}")
+    public CityDto update(@PathVariable long id,
+                          @RequestBody @Valid CityDto city) {
+        return cityService.update(id, city);
+    }
+
+    @DeleteMapping(value = "{id}")
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public void delete(@PathVariable long id) {
+        cityService.delete(id);
     }
 }

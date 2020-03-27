@@ -35,6 +35,11 @@ public class ContentController {
         return contentService.readAllByCityName(cityName);
     }
 
+    @GetMapping(value = "/one/{city}")
+    public ContentDto getOneByCityName(@PathVariable String city) {
+        return contentService.readOneByCityName(city);
+    }
+
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public void create(@RequestBody @Valid ContentDto content) {

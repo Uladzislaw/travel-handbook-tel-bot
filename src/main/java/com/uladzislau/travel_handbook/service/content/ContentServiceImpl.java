@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Random;
 import java.util.stream.Collectors;
 
 @Service
@@ -81,5 +82,15 @@ public class ContentServiceImpl extends BaseService<Content> implements ContentS
     @Transactional
     public void delete(long id) {
         delete(findByIdOrElseThrow(id));
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public ContentDto readOneByCityName(String city) {
+        List<ContentDto> content = readAllByCityName(city);
+        if (!content.isEmpty()) {
+            return content.get(new Random().nextInt(content.size()));
+        }
+        return null;
     }
 }

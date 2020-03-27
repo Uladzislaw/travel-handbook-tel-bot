@@ -16,4 +16,6 @@ public interface ContentService extends Service<Content> {
     ContentDto update(long id, ContentDto content);
 
     void delete(long id);
+
+    ContentDto readOneByCityName(String city);
 }

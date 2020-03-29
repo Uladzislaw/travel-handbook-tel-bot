@@ -11,7 +11,7 @@ create table content
 (
     id      serial,
     text    varchar(1000) not null,
-    city_id integer       not null,
+    city_id bigint        not null,
     CONSTRAINT "content_pk" primary key (id)
 );
 

@@ -7,4 +7,4 @@ Backend service for managing cities and content for them. See endpoints [here](h
 - Create `cities_travel_handbook` database in postres;
 - Free 8080 port on your local machine or switch port by adding `server.port=(port_number)` in application.properties file
 
-Click [here](https://github.com/Uladzislaw/travel-handbook) to see telegram bot uses this API.
+Click [here](https://github.com/Uladzislaw/travel-tel-bot) to see telegram bot uses this API.
